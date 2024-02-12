@@ -53,13 +53,13 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ('gender', 'father_name', 'date_of_birth', 'fee_receipt',
-                  'address', 'city', 'state', 'pincode', 'join_year')
-
-    def clean_join_year(self):
-        join_year = self.cleaned_data.get('join_year')
-        if not (join_year > 2013 and join_year <= datetime.now().year):
-            raise forms.ValidationError('Please enter valid Join year')
-        return join_year
+                  'address', 'city', 'state', 'pincode')
+# , 'join_year'
+    # def clean_join_year(self):
+    #     join_year = self.cleaned_data.get('join_year')
+    #     if not (join_year > 2013 and join_year <= datetime.now().year):
+    #         raise forms.ValidationError('Please enter valid Join year')
+    #     return join_year
 
     def clean_pincode(self):
         pincode = self.cleaned_data.get('pincode')
@@ -83,3 +83,8 @@ class SignUpForm(forms.Form):
     username = forms.CharField(max_length=50)
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+class SignInForm(forms.Form):
+    username = forms.CharField(max_length=50)
+    email= forms.EmailField()
+    password= forms.CharField(widget=forms.PasswordInput)

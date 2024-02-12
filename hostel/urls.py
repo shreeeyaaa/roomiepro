@@ -1,6 +1,7 @@
 from django.urls import path, include
 from . import views
 
+
 app_name = 'hostel'
 urlpatterns = [
     path('', views.indexx, name='indexx'),
@@ -9,6 +10,7 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.logout1, name='logout'),
     path('indexx/', views.indexx, name='indexx'),
+    path('register/', views.register, name='register'),
 
     path('signin', views.signin, name='signin'),
     path('signup/', views.signup, name='signup'),

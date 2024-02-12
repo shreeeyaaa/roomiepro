@@ -116,7 +116,7 @@ USE_TZ = True
 
 AUTH_PROFILE_MODULE = "hostel.diff"
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/signin/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -128,10 +128,13 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Confirmation Email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'shubhamsingh4204@gmail.com'
-EMAIL_HOST_PASSWORD = 'Personal@Gmail'
-EMAIL_PORT = 587
+# # Confirmation Email
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'shubhamsingh4204@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Personal@Gmail'
+# EMAIL_PORT = 587
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]

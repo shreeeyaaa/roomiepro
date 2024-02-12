@@ -14,6 +14,7 @@ import csv, os
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
+from .custom_auth import custom_authenticate
 # Diff class for authentication if login user is not hostel admin or Student then
 # login page will display error 
 # @login_required
@@ -88,17 +89,28 @@ def signin(request):
         # password = request.POST['password']
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
+        auth_result = custom_authenticate(username, password)
 
-        user = authenticate( username=username, password=password)
-        if user is not None:
-            login(request,user)
+        if isinstance(auth_result, User):
+            # Authentication successful
+            login(request, auth_result)
+            return render(request, "hostel/index.html")
+        elif auth_result == "username_not_found":
+            messages.error(request, "Username not found")
+        elif auth_result == "incorrect_password":
+            messages.error(request, "Incorrect password")
+        return render(request, "hostel/signin.html")
+        # user = authenticate( username=username, password=password)
+        # print(user)
+        # if user is not None:
+        #     login(request,user)
             
-            return render(request,"hostel/index.html")
+        #     return render(request,"hostel/index.html")
 
-        else:
-            messages.error(request,"Bad Credentials!")
-            print("bad credentials")
-            return render(request,"hostel/signin.html")
+        # else:
+        #     messages.error(request,"Bad Credentials!")
+        #     print("bad credentials")
+        #     return render(request,"hostel/signin.html")
 
     return render(request,"hostel/signin.html")
 
