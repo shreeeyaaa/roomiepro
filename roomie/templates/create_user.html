@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Create User{% endblock %}
+
+{% block content %}
+<style>
+    h2 {
+        color: #333;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<h2>Create User</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="{{ form.name.id_for_label }}">Name:</label>
+    {{ form.name }}
+
+    <label for="{{ form.photo.id_for_label }}">Photo:</label>
+    {{ form.photo }}
+    
+    <label for="{{ form.location.id_for_label }}">Location:</label>
+    {{ form.location }}
+
+    {% comment %} <label for="{{ form.passion.id_for_label }}">Passion:</label>
+    {{ form.passion }}
+     {% endcomment %}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
