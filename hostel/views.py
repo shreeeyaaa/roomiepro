@@ -22,6 +22,10 @@ def index(request):
     # diff = Diff.objects.get( user = request.user)
     # return render(request, 'hostel/index.html', {'diff' : diff, })
     return render(request,'hostel/index.html')
+def roommate(request):
+    return render(request,'roommate/rommate.html')
+def roomie(request):
+    return render(request,'roommate/roomie.html')
 
 def indexx(request):
     # diff = Diff.objects.get( user = request.user)
@@ -396,6 +400,7 @@ def show_students(request):
         changer.append([user, i])
     
     return render(request, 'hostel/show_students.html', {'students': changer,})
+
 
 
 @login_required

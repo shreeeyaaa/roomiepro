@@ -42,15 +42,11 @@
                 </ul>
 
                 <!-- navbar for right -->
-                <!-- <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown dropdown-fuse">
-                        <a href="/roomie" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">Find Roommate </span>
-                        </a>
-                       
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-but">
+                        <a class="btn btn-outline-light" href="/register">Update Your Profile</a>
                     </li>
-                </ul> -->
-
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown dropdown-fuse">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -66,17 +62,6 @@
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- <li class="dropdown dropdown-fuse">
-                        <a href="/roomie" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">Find Roommate </span>
-                        </a>
-                       
-                    </li> -->
-                    <li class="nav-but">
-                        <a class="btn btn-outline-light" href="/roomie">Find Roommate</a>
-                    </li>
-                </ul>
         </header>
         <!-- Topbar -->
         <header id="topbar" class="alt" style="margin-top: 75px;">
@@ -90,10 +75,7 @@
             </div>
         </header>
 
-        {% if user.is_authenticated %}
-        {% if diff.is_student %}
-
-        <!-- Content for Student -->
+        
         <div id="content" class="animated fadeIn">
 
             <h3 class="text-center mt10 mb25 fw400" style="margin-top: 75px;"> Welcome {{user.first_name}} </h3>
@@ -122,9 +104,10 @@
 
                             </div>
                             <div class="panel-body">
-                                <p>Select to initiate the request to the administration to change your room to new room
+                                <!-- <p>Select to initiate the request to the administration to change your room to new room
                                     from the room that is presently allotted to you.</br></p>
-                                <p></br></p>
+                                <p></br></p> -->
+                                <img src="static/css/dart.png" alt="member-img">
                                 <div class="btn btn-default btn-lg mb5"><a href="change_req/">Request</a></div>
                             </div>
                         </div>
@@ -163,9 +146,7 @@
             </div>
         </div>
 
-        {% else %}
-
-        <!-- Content for Hostel Accountant -->
+        
         <div id="content" class="animated fadeIn">
 
             <h3 class="text-center mt10 mb25 fw400" style="margin-top: 75px;"> Welcome {{diff.user}} </h3>
@@ -294,8 +275,6 @@
             </div>
         </div>
 
-        {% endif %}
-        {% endif %}
         <section id="content_wrapper">
             <section id="content" class="table-layout animated fadeIn">
             </section>

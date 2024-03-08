@@ -21,23 +21,41 @@ class Room(models.Model):
         return str(self.room_no)
 
 class Student(models.Model):
-    join_year     = models.IntegerField(default=2016)
-    room          = models.ForeignKey(Room, on_delete=models.CASCADE, null=True)
+    # id = models.AutoField(primary_key=True, default=generate_unique_id)
+
+    # join_year     = models.IntegerField(default=2016)
+    # join_year     = models.IntegerField(default=2016)
+    name   =  models.CharField(max_length = 200, null=True)
+    # father_name   =  models.CharField(max_length = 200, null=True)
+    # room          = models.ForeignKey(Room, on_delete=models.CASCADE, null=True)
     GENDER_CHOICES=[
         ('male', 'Male'),
         ('female', 'Female')
     ]
+    HOBBIES_CHOICES=[
+        ('Singing', 'singing'),
+        ('Dancing' , 'dancing'),
+        ('Painting' , 'painting'),
+        ('Hiking' , 'hiking'),
+        ('Gaming' , 'gaming'),
+        ('Cooking' , 'cooking'),
+        ('Sports' , 'sports'),
+    ]
+    age           = models.IntegerField(default=20)
     gender        = models.CharField(choices=GENDER_CHOICES, default='male',max_length = 6)
-    father_name   =  models.CharField(max_length = 200, null=True)
-    date_of_birth =  models.DateField(null =True, blank = True)
-    fee_receipt   =  models.FileField(upload_to='receipt/', null=True)
-    address       =  models.CharField(max_length = 100,null =True)
-    city          =  models.CharField(max_length = 100,null =True)
-    state         =  models.CharField(max_length = 100,null =True)
-    pincode       = models.IntegerField(default=382009)
-    roll_no       = models.CharField(max_length = 10, primary_key =True,unique = True )
+    hobbies       = models.CharField(choices=HOBBIES_CHOICES, default='Singing',max_length= 10)
+    name_of_institute=models.CharField(max_length =100,null=True)
+    # father_name   =  models.CharField(max_length = 200, null=True)
+    # date_of_birth =  models.DateField(null =True, blank = True)
+    profile_picture   =  models.FileField(upload_to='profile_picture/', null=True)
+    permanent_address       =  models.CharField(max_length = 100,null =True)
+    temporary_address       =  models.CharField(max_length = 100,null =True)
+    bio          =  models.CharField(max_length = 200,null =True)
+    # state         =  models.CharField(max_length = 100,null =True)
+    # pincode       = models.IntegerField(default=382009)
+    # roll_no       = models.CharField(max_length = 10, primary_key =True,unique = True )
     def __str__(self):
-        return str(self.roll_no)
+        return str(self.name)
 
 class Change(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
