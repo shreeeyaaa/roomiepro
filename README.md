@@ -13,7 +13,7 @@ Roomie is a web application designed to help hostel residents find compatible ro
 
 ## Technologies Used:
 - **Django:** The backend of the application is built using the Django web framework.
-- **HTML/CSS/JavaScript:** Frontend development is done using standard web technologies.
+- **HTML/CSS:** Frontend development is done using standard web technologies.
 - **SQLite:** The default database engine used by Django for data storage.
 
 
