@@ -3,3 +3,4 @@ Name: sadhana, Location: Baneshwor, Latitude: 27.6892, Longitude: 85.33
 Name: hari maya, Location: Baneshwor, Latitude: 27.6892, Longitude: 85.33
 Name: ram prasad, Location: Lalitpur, Latitude: 27.6644, Longitude: 85.3188
 Name: monica, Location: Pulchowk, Latitude: 11, Longitude: 11
+Name: shreya. shrestha, Location: jhamsikhel, Latitude: 11, Longitude: 11
