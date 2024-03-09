@@ -1,3 +1,4 @@
+
 from math import radians, sin, cos, sqrt, atan2
 
 def calculate_distance(coord1, coord2):
@@ -162,3 +163,6 @@ def get_recommended_people(latitude, longitude, people, location_file_path):
 #                 matched.update([user1, user2])
 
 #         return matches
+
+
+

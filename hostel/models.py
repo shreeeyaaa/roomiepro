@@ -67,3 +67,31 @@ class Swap(models.Model):
     reason   = models.CharField(max_length = 300)
     accept   = models.BooleanField(default = False)
 
+class Hostel(models.Model):
+    name = models.CharField(max_length=200)
+    address = models.TextField()
+    pricing = models.DecimalField(max_digits=10, decimal_places=2)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
+    contact = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
+    message = models.TextField(null=True,blank = True)
+    available = models.BooleanField(null = True,blank = True)
+    seater2 = models.IntegerField(blank = True)
+    seater3 = models.IntegerField(blank = True)
+
+ 
+
+    def __str__(self):
+        return self.name
+
+    
+
+    
+class HostelImage(models.Model):
+    hostel = models.ForeignKey(Hostel, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='hostel_images/')
+    
+    def __str__(self):
+        return f"Image for {self.hostel.name}"
+
+

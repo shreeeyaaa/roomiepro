@@ -1,0 +1,40 @@
+{% load static %}
+
+<section id="hostels_section">
+    <div class="hostels-container">
+       
+        <!-- <div> {{ context }}</div> -->
+        {% for item in context %}
+
+            <div class="hostel-box">
+                <!-- Display only the first hostel image, or a message if none -->
+                <div class="image-container">
+                    {% if item.hostel.images.first %}
+                        <img src="{{ item.hostel.images.first.image.url }}" alt="Hostel Image" class="hostel-image">
+                    {% else %}
+                        <p>No images available</p>
+                    {% endif %}
+                </div>
+
+                <div class="hostel-info">
+                    <h4>{{ item.hostel.name }} - {{ item.instance }}</h4>
+                    <!-- Add more details here if needed -->
+                    <!-- For example: <p>{{ item.hostel.description }}</p> -->
+
+                    <!-- Add a link or button to view details -->
+                    <button class="btn btn-primary btn-lg view-details-btn" onclick="openModal('{{ item.hostel.name }}')">
+                        <span class="button-text">View Details</span>
+                        <span class="button-icon">▶</span>
+                    </button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+     <div id="detailsModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <!-- Add content for details here -->
+                
+                
+            </div>
+</section>

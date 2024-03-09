@@ -3,10 +3,12 @@ from .forms import UserForm
 import os
 from .utils import get_coordinates, read_locations, calculate_distance, get_recommended_people
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 file_path = os.path.join(BASE_DIR, 'user_data.txt')
 # file_path = os.path.join(BASE_DIR, 'user_data.txt')
+
 location_file_path = os.path.join(BASE_DIR, 'location_data.txt')
 
 # Create your views here.
@@ -16,6 +18,7 @@ def add_roomie(request):
         if form.is_valid():
             print("hello")
             # Process the form data and save it to a file
+
             # location= form.cleaned_data['location']
             name = form.cleaned_data['name']
             age = form.cleaned_data['age']
@@ -25,12 +28,14 @@ def add_roomie(request):
             bio = form.cleaned_data['bio']
             photo = form.cleaned_data['photo']
             hobbies= form.cleaned_data['hobbies']
+
             filename = f"{name.lower().replace(' ', '_')}.jpg"
             upload_path = os.path.join('media', 'user_photos', filename)
             with open(upload_path, 'wb') as file:
                 for chunk in photo.chunks():
                     file.write(chunk)
                     
+
             coordinates = get_coordinates(temporary_address, location_file_path)       
             # location = form.cleaned_data['location']
             # passion = form.cleaned_data['passion']
@@ -43,8 +48,12 @@ def add_roomie(request):
             # return render(request, 'indexx.html')
     else:
        
+
+                    
+            
         form = UserForm()
     return render(request, 'create_user.html', {'form': form})
+
 
 
 
@@ -119,6 +128,7 @@ def show_roomies(request):
         # recommended_people = [person for person in people if person["location"].lower().strip() == selected_location.lower().strip()]
         recommended_people = get_recommended_people(request_latitude, request_longitude, people, location_file_path)
         print(recommended_people)
+
     else:
         recommended_people = people
     locations = [
@@ -128,6 +138,7 @@ def show_roomies(request):
         "Jhamsikhel",
         "Sinamangal"
     ]
+
     # Instantiate the matcher with the path to your text file
 #     matcher = RoommateMatcher("user_data.txt")
 
@@ -251,3 +262,4 @@ def show_profiles(request):
     print(current_user_data)
 
     return render(request, 'users.html', {'current_user_data': current_user_data})
+

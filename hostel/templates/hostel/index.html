@@ -2,9 +2,11 @@
 <!DOCTYPE html>
 <html>
 
+
+
 <head>
     <meta charset="utf-8">
-    <title>Roomie</title>
+    <title>Hostel Management</title>
     <meta name="keywords" content="" />
     <meta name="description" content="">
     <meta name="author" content="ThemeREX">
@@ -20,6 +22,8 @@
 
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+    
+
 
 </head>
 
@@ -37,7 +41,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-active">
-                        <a href="/index" style="font-size: 20px">Roomie</a>
+                        <a href="/index" style="font-size: 20px">Hostel Management</a>
                     </li>
                 </ul>
 
@@ -53,6 +57,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown dropdown-fuse">
+                        Hi
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="hidden-xs">{{ user.first_name }} </span>
                         </a>
@@ -84,221 +89,86 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-link">
                         <a href="/index"> Home</a>
+
                         <!-- <a  href="/roomie/add_roomie"> Add roomie</a>
                         <a  href="/roomie/show_roomies"> Find roomie</a> -->
-                       
+                    
+
+                        
+
                     </li>
                     <li class="breadcrumb-current-item"></li>
                 </ol>
+                <div class="search-bar">
+                    <button id="options-icon" onclick="toggleDropdown()">⯆</button>
+                    <input type="text" id="search-input" placeholder="Search">
+                    <button id="search-btn" onclick="search()">🔍</button>
+                    <div id="dropdown">
+                        <div class="dropdown-option" onclick="selectOption('nearby hostels')"  id = "sort_by_hostels">
+                            Sort by location
+                        </div>
+                        <div class="dropdown-option" onclick="selectOption('pricing')" id ="sort_by_pricing">Sort by pricing</div>
+                        <div class="dropdown-option" onclick="selectOption('popularity')">Sort by popularity</div>
+                    </div>
+                </div>
+
             </div>
         </header>
 
-        {% if user.is_authenticated %}
-        {% if diff.is_student %}
+        
 
         <!-- Content for Student -->
         <div id="content" class="animated fadeIn">
+            <section id="hostels_section">
 
             <h3 class="text-center mt10 mb25 fw400" style="margin-top: 75px;"> Welcome {{user.first_name}} </h3>
+           
             <div class="row">
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <span class="panel-title"> View Details</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to view the complete details of your room which includes your room number,
-                                    maximum capacity of the room and your roommates </br></p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="student_details/">View</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <span class="panel-title">Change Room</span>
 
+                <!-- Modal HTML structure -->
+<div id="detailsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <!-- Add content for details here -->
+        
+        
+    </div>
+</div>
 
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to initiate the request to the administration to change your room to new room
-                                    from the room that is presently allotted to you.</br></p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="change_req/">Request</a></div>
-                            </div>
-                        </div>
-                    </div>
+{% for hostel in hostels %}
+{% if forloop.counter <= 4 %}
+    <div class="col-sm-6 col-lg-3">
+        <div class="bs-component">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="panel-title">{{ hostel.name }}</span>
                 </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-system">
-                            <div class="panel-heading">
-                                <span class="panel-title">Swap Room</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to initiate the request of swap room where your request would be forwarded to
-                                    the student to whom you want to swap the room with.</br></p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="swap_req/">Request</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <span class="panel-title">Swap Room Ack.</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to acknowledge a swap room request already initiated by another student to
-                                    swap room with you. It will then go to the admin.</p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="swap_ack/">View</a></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="panel-body" style="height: 300px; overflow: hidden; text-align: center;">
+                    
+                    <img src="{{ hostel.images.first.image.url }}" alt="{{ hostel.name }}" style="max-width: 100%; max-height: 100%; width: auto; margin: auto; display: inline-block; width: 300px; height: 200px; ">
+                    <!-- Assuming you want to display the first image of the hostel -->
+                    <p></br></p>
+                    
+                    <button class="btn btn-primary btn-lg view-details-btn" onclick="openModal('{{ hostel.name }}')">
+                        <span class="button-text">View Details</span>
+                        <span class="button-icon">▶</span>
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
+{% endif %}
+{% endfor %}
 
-        {% else %}
 
-        <!-- Content for Hostel Accountant -->
-        <div id="content" class="animated fadeIn">
-
-            <h3 class="text-center mt10 mb25 fw400" style="margin-top: 75px;"> Welcome {{diff.user}} </h3>
-
-            <div class="row">
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <span class="panel-title">Register New Student</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to proceed and see the rooms which are vacant and the further number of
-                                    students that can be accommodated</p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="register/">Proceed</a></div>
-                            </div>
-                        </div>
-                    </div>s
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <span class="panel-title">Allocate Room</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Allot a new room to a student that hasn't been allotted a room already to the
-                                    student </br></br></p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="allocate/">Proceed</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <span class="panel-title">Change Room</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to proceed with sanctioning the change room request of the student with his /
-                                    her student details.</br></p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="change/">Proceed</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-system">
-                            <div class="panel-heading">
-                                <span class="panel-title">Swap Room</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to proceed with sanctioning or declining the mutually agreed request of two
-                                    students to swap their rooms</br></p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="swap/">Proceed</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <span class="panel-title">Deallocate Batch</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to proceed and deallocate the rooms of all the students graduating in a
-                                    particular batch by entering their year of joining/batch year.</p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="deallocate/">Proceed</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-warnings">
-                            <div class="panel-heading">
-                                <span class="panel-title">All Requests</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to proceed and see the list of all the students who have requested for the
-                                    room modifications and then grant or deny the requests.</p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="show_request/">Proceed</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <span class="panel-title">All Vacant Rooms</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to proceed and see the rooms in the hostel which are vacant and the further
-                                    number of students that can be accommodated into the room</p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="show_vacancy/">Proceed</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="bs-component">
-                        <div class="panel panel-system">
-                            <div class="panel-heading">
-                                <span class="panel-title">All Student Details</span>
-                            </div>
-                            <div class="panel-body">
-                                <p>Select to proceed to the page with all the students registered with the institute
-                                    and displays details including names, roll no, email and room no.</p>
-                                <p></br></p>
-                                <div class="btn btn-default btn-lg mb5"><a href="show_students/">Proceed</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
+        </section>
 
-        {% endif %}
-        {% endif %}
+          
+           
+     
+
+        
         <section id="content_wrapper">
             <section id="content" class="table-layout animated fadeIn">
             </section>
@@ -310,6 +180,314 @@
             transition: all 0.7s ease;
         }
     </style>
+
+
+<script>
+    // Add the functions for the new search bar
+    let dropdown = document.getElementById("dropdown");
+
+    function toggleDropdown() {
+        dropdown.style.display = (dropdown.style.display === "none" || dropdown.style.display === "") ? "flex" : "none";
+    }
+
+    function selectOption(option) {
+        document.getElementById("search-input").value = option;
+        toggleDropdown();
+        if (option === 'Sort by location') {
+        sortHostels();
+    }
+    else if(option == 'pricing')
+    {
+        sortHostelsP();
+    }
+    
+    // Close the dropdown after selecting an option
+    }
+
+    <!-- Add the functions for the new search bar -->
+
+
+    function search() {
+        // Add your search logic here
+        var searchInput = document.getElementById('search-input').value;
+
+        // Make an AJAX request to Django view
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/search_hostel/', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // Handle the response from Django
+                    console.log(xhr.responseText);
+                    var responseData = JSON.parse(xhr.responseText);
+                     console.log(responseData);
+                     try {
+                var responseData = JSON.parse(xhr.responseText);
+                console.log(responseData);
+
+                // Check if search_results is defined and an array
+                if (Array.isArray(responseData.search_results)) {
+                    var hostelsSection = document.getElementById("hostels_section");
+
+                    // Clear previous results
+                    hostelsSection.innerHTML = "";
+
+                    // Iterate over the search_results
+                    responseData.search_results.forEach(function (hostel) {
+                        // Create hostel-box container
+                        var hostelBox = document.createElement("div");
+                        hostelBox.classList.add("hostel-box");
+
+                        var imageContainer = document.createElement("div");
+                            imageContainer.classList.add("image-container");
+
+                            // Check if 'images' is defined and not empty
+                            if (hostel.images && hostel.images.length > 0) {
+                                // Create img element for the first photo
+                                var hostelImage = document.createElement("img");
+                                hostelImage.src = hostel.images[0].url;
+                                hostelImage.alt = "Hostel Image";
+                                hostelImage.classList.add("hostel-image");
+                                // Append img element to image-container
+                                imageContainer.appendChild(hostelImage);
+                            } else {
+                                console.error("Images array is not defined or is empty for hostel:", hostel);
+                            }
+
+                            // Append image-container to hostel-box
+                            hostelBox.appendChild(imageContainer);
+                            hostelBox.style.display = "flex"; // Use flexbox for layout
+                            hostelBox.style.border = "1px solid #ccc";
+                             hostelBox.style.marginRight = "10px";
+                            hostelBox.style.width = "1450px";
+                            hostelBox.style.marginBottom = "10px";
+                            hostelBox.style.padding = "10px";
+                            hostelBox.style.boxSizing = "border-box";
+                            hostelBox.style.alignItems = "center"; // Center items vertically
+
+
+                        // Create hostel-info container
+                        var hostelInfo = document.createElement("div");
+                        hostelInfo.classList.add("hostel-info");
+
+                        // Create h4 element
+                        var h4Element = document.createElement("h4");
+                        h4Element.innerHTML = `${hostel.name}`;
+                        hostelInfo.appendChild(h4Element);
+
+                        // Create button element
+                        var buttonElement = document.createElement("button");
+                        buttonElement.classList.add("btn");
+                        buttonElement.classList.add("btn-primary");
+                        buttonElement.classList.add("btn-lg");
+                        buttonElement.classList.add("view-details-btn");
+                        var buttonIcon = document.createElement("span");
+                        buttonIcon.className = "button-icon";
+                        buttonIcon.innerHTML = "▶";
+                        buttonElement.appendChild(buttonIcon);
+                      
+                        buttonElement.innerHTML = "View Details";
+                        hostelInfo.appendChild(buttonElement);
+                        buttonElement.onclick = function () {
+                            console.log(hostel.name)
+                            openModal(hostel.name);  // Call your function with appropriate parameters
+                        };
+
+                        // Append hostel-info to hostel-box
+                        hostelBox.appendChild(hostelInfo);
+
+                        // Append hostel-box to hostelsSection
+                        hostelsSection.appendChild(hostelBox);
+
+                        // Create the modal container
+                    var modalContainer = document.createElement("div");
+                    modalContainer.id = "detailsModal";
+                    modalContainer.classList.add("modal");
+
+// Create the modal content
+            var modalContent = document.createElement("div");
+                modalContent.classList.add("modal-content");
+
+// Create the close button
+                var closeButton = document.createElement("span");
+                closeButton.classList.add("close");
+                closeButton.innerHTML = "&times;";
+                closeButton.onclick = closeModal; // Attach onclick event to close the modal
+
+// Add the close button to the modal content
+modalContent.appendChild(closeButton);
+
+// Append the modal content to the modal container
+modalContainer.appendChild(modalContent);
+
+// Append the modal container to the document body
+    document.body.appendChild(modalContainer);
+
+                    });
+                } else {
+                    console.error("search_results is not an array or is undefined");
+                }
+            } catch (error) {
+                console.error("Error parsing JSON response:", error);
+            }
+
+
+                  
+                } else {
+                    // Handle error response
+                    document.getElementById("hostels_section").innerHTML = "Error while searching.";
+                }
+            }
+        };
+
+        // Send the POST request with searchInput as form data
+        var data = 'search_query=' + encodeURIComponent(searchInput);
+        xhr.send(data);
+    }
+
+
+
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('#options-icon')) {
+            dropdown.style.display = 'none';
+        }
+    }
+</script>
+<!-- ... (your existing HTML code) -->
+
+<!-- Add the following script for "View Details" functionality -->
+
+<script>
+    // Add this script along with your existing scripts
+function openModal(hostelName) {
+   
+    var modal = document.getElementById('detailsModal');
+    modal.style.display = 'block';
+    document.getElementById('topbar').style.opacity = '0';
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/get_hostel_details/?name=' + encodeURIComponent(hostelName), true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+
+            var responseData = JSON.parse(xhr.responseText);
+            // Update modal content with hostel details
+            var modalContent = modal.querySelector('.modal-content');
+            modalContent.innerHTML = `<span class="close" onclick="closeModal()">&times;</span>
+                                    <h5 style="color: black;">Hostel Details</h5>`;
+        }
+
+            if (responseData.name && responseData.location) {
+                // Display name and address
+                var hostelNameElement = document.createElement('p');
+                hostelNameElement.innerHTML = `<strong>Name:</strong> ${responseData.name}`;
+                modalContent.appendChild(hostelNameElement);
+
+                var hostelAddressElement = document.createElement('p');
+                hostelAddressElement.innerHTML = `<strong>Address:</strong> ${responseData.location}`;
+                var hostelContactElement = document.createElement('p');
+                hostelContactElement.innerHTML = `<strong>Contact no:</strong> ${responseData.contact}`;
+                modalContent.appendChild(hostelAddressElement);
+                modalContent.appendChild(hostelContactElement);
+
+                var hostelAvailableElement = document.createElement('p');
+                hostelAvailableElement.innerHTML = `<strong>Available rooms:</strong> ${responseData.available_rooms}`;
+                modalContent.appendChild(hostelAvailableElement);
+
+               
+
+                if (responseData.images && responseData.images.length > 0) {
+                    var imagesContainer = document.createElement('div');
+                    imagesContainer.classList.add('images-container');
+
+                    responseData.images.forEach(function (image) {
+                        var imageElement = document.createElement('img');
+                        imageElement.src = image.url;
+                        imageElement.alt = 'Hostel Image';
+                        imageElement.classList.add('hostel-image');
+                        imagesContainer.appendChild(imageElement);
+                    });
+
+                    modalContent.appendChild(imagesContainer);
+                }
+                } else {
+                console.error('Name or address is not defined in hostel details:', responseData);
+             }   
+
+    };
+    xhr.send();
+    
+}
+
+function closeModal() {
+    var modal = document.getElementById('detailsModal');
+    modal.style.display = 'none';
+    document.getElementById('topbar').style.opacity = '1';
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function (event) {
+    var modal = document.getElementById('detailsModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+};
+
+</script>
+
+<!-- ... (your existing HTML code) -->
+
+
+<script>
+    function sortHostels() {
+        // Make an asynchronous request to the server
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                // Replace the content of the hostels section with the updated content
+                document.getElementById("hostels_section").innerHTML = this.responseText;
+            }
+        };
+        
+        
+            xhr.open("GET", "/sort_by_hostels/", true);
+            xhr.send();
+
+        
+       
+    }
+    
+
+    // Call the sortHostels function when "Sort by hostels" is selected
+    document.getElementById("sort_by_hostels").addEventListener("click", sortHostels);
+
+
+    function sortHostelsP() {
+        // Make an asynchronous request to the server
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                // Replace the content of the hostels section with the updated content
+                document.getElementById("hostels_section").innerHTML = this.responseText;
+            }
+        };
+        
+        
+            xhr.open("GET", "/sort_by_pricing/", true);
+            xhr.send();
+
+        
+       
+    }
+    
+
+    // Call the sortHostels function when "Sort by hostels" is selected
+    document.getElementById("sort_by_pricing").addEventListener("click", sortHostelsP);
+</script>
     <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
     <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
 

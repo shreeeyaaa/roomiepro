@@ -1,5 +1,6 @@
 from django import forms
 
+
 HOBBY_CHOICES = (
     ('singing', 'Singing'),
     ('dancing', 'Dancing'),
@@ -72,3 +73,4 @@ class UserForm(forms.Form):
 #                 matched.update([user1, user2])
 
 #         return matches
+
