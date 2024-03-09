@@ -1,8 +1,7 @@
 
 # Roomie
-
 Welcome to Roomie! This web application is designed to simplify the process of finding compatible roommates and nearby hostels based on user preferences and location. Below, you'll find information on how to set up and run the Roomie project locally.
-=======
+
 
 ## Overview:
 Roomie is a web application designed to help hostel residents find compatible roommates based on their preferences and interests. The application aims to simplify the roommate search process and enhance the overall hostel living experience.
