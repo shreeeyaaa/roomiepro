@@ -6,12 +6,15 @@ app_name = 'hostel'
 urlpatterns = [
     path('', views.indexx, name='indexx'),
     path('index/register/', views.register, name='register'),
+    path('sort_by_hostels/',views.sort_by_hostels, name = "sorted_hostels"),
+    path('sort_by_pricing/',views.sort_by_pricing, name = "sorted_pricing"),
+    path('get_hostel_details/',views.get_hostel_details, name = "get_hostel_details"),
     path('index/', views.index, name='index'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.logout1, name='logout'),
     path('indexx/', views.indexx, name='indexx'),
     path('register/', views.register, name='register'),
-
+    path('search_hostel/',views.search_hostel,name='search_hostel'),
     path('signin', views.signin, name='signin'),
     path('signup/', views.signup, name='signup'),
     path('allocate/', views.allocate, name='allocate'),

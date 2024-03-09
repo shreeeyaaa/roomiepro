@@ -1,0 +1,22 @@
+Update your HTML template
+<section id="hostels_section">
+    <div>
+        <div>{{ context }}</div>
+        {% for data in context %}
+            <div class="hostel-box">
+                <!-- Display hostel images -->
+                {% for image in data.hostel.images.all %}
+                    <img src="{{ image.image.url }}" alt="Hostel Image" class="hostel-image">
+                {% endfor %}
+
+                <div class="hostel-info">
+                    <h4>{{ data.hostel.name }} - {{ data.distance }} km</h4>
+                    <!-- Add more details here if needed -->
+                </div>
+
+                <!-- Add a link or button to view details -->
+                <button class="view-details-btn">View Details</button>
+            </div>
+        {% endfor %}
+    </div>
+</section>

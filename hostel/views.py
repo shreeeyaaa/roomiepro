@@ -7,10 +7,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, DiffForm, StudentForm, RoomForm,SignUpForm
-from .models import Diff, Student, Room, Change, Swap
+from .models import Diff, Student, Room, Change, Swap, Hostel
+from .binary_tree import HostelBinaryTree, sorted_hostels
 from django.contrib.auth.models import User
 from django.template import RequestContext
 import csv, os
+from .pbinary import HostelPricingBinaryTree, sorted_pricing
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
@@ -18,10 +20,43 @@ from .custom_auth import custom_authenticate
 # Diff class for authentication if login user is not hostel admin or Student then
 # login page will display error 
 # @login_required
-def index(request):
-    # diff = Diff.objects.get( user = request.user)
-    # return render(request, 'hostel/index.html', {'diff' : diff, })
-    return render(request,'hostel/index.html')
+
+def get_hostel_details(request):
+    hostel_name = request.GET.get('name', None)
+    hostel = Hostel.objects.filter(name=hostel_name).first()
+    image_urls = [image.image.url for image in hostel.images.all()]
+    try:
+        hostel = Hostel.objects.filter(name=hostel_name).first()
+        if hostel:
+            hostel_details = {
+            'name': hostel.name,
+            'location': hostel.address,
+            'contact':hostel.contact,
+            'available_rooms': (hostel.seater2+ hostel.seater3),
+            'seater2': hostel.seater2,
+            'seater3':hostel.seater3,
+            'images':[{'url': url} for url in image_urls]
+
+            # Add other fields as needed
+            }
+        else:
+            hostel_details = {'error': 'Hostel not found'}
+    except Exception as e:
+        hostel_details = {'error': str(e)}
+
+
+    return JsonResponse(hostel_details)
+
+
+def sort_by_hostels(request):  
+    context = {'context': sorted_hostels}
+    return render(request, 'hostel/sorted_hostels.html', context)
+
+def sort_by_pricing(request):
+    
+    context = {'context': sorted_pricing}
+    return render(request, 'hostel/sorted_hostels.html', context)
+
 
 def indexx(request):
     # diff = Diff.objects.get( user = request.user)
@@ -82,7 +117,17 @@ def register(request):
         'diff_form' : diff_form,
         'registered': registered,
     })
+
 def signin(request):
+    # try:
+    #     diff = Diff.objects.get(user=request.user)
+    # except Diff.DoesNotExist:
+    #     diff = Diff.objects.create(user=request.user)
+    
+    hostels = Hostel.objects.all()
+    
+
+    
 
     if request.method == 'POST':
         # username = request.POST['username']
@@ -94,7 +139,7 @@ def signin(request):
         if isinstance(auth_result, User):
             # Authentication successful
             login(request, auth_result)
-            return render(request, "hostel/index.html")
+            return render(request, "hostel/index.html",  {'hostels': hostels})
         elif auth_result == "username_not_found":
             messages.error(request, "Username not found")
         elif auth_result == "incorrect_password":
@@ -112,7 +157,7 @@ def signin(request):
         #     print("bad credentials")
         #     return render(request,"hostel/signin.html")
 
-    return render(request,"hostel/signin.html")
+    return render(request,"hostel/signin.html", {'hostels': hostels})
 
     #     if user:
     #         if user.is_active:
@@ -152,6 +197,27 @@ def user_login(request):
             return HttpResponseRedirect("/login")
     else:
         return render(request,'hostel/login.html', {})
+
+
+
+def view_hostel(request, hostel_id):
+    hostel = get_object_or_404(Hostel, id=hostel_id)
+    return render(request, 'hostel/view_hostel.html', {'hostel': hostel})
+
+@login_required
+def index(request):
+    try:
+        diff = Diff.objects.get(user=request.user)
+    except Diff.DoesNotExist:
+        diff = Diff.objects.create(user=request.user)
+    
+    hostels = Hostel.objects.all()
+    
+
+    return render(request, 'hostel/index.html', {'diff': diff, 'hostels': hostels})
+
+
+
 
 # <!----- Logout----->
 @login_required
@@ -465,3 +531,34 @@ def signup(request):
         'signup_form': signup_form,
         'registered': registered,
     })
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from .hostel_trie import hostel_trie  # Adjust this import based on your actual model
+from .hostel_trie import HostelTrie
+@csrf_exempt  # Disable CSRF for simplicity (handle CSRF properly in production)
+def search_hostel(request):
+    if request.method == 'POST':
+        search_query = request.POST.get('search_query', '')
+        
+        search_results = hostel_trie.search(search_query)
+        print(search_results)
+
+        # Retrieve detailed information about the hostels
+        hostels = Hostel.objects.filter(name__in=search_results)
+
+        # Serialize the data to JSON
+        
+        data = []
+        for hostel in hostels:
+            image_urls = [image.image.url for image in hostel.images.all()]
+
+            hostel_data = {
+                'name': hostel.name,
+                'address': hostel.address,
+                'pricing': hostel.pricing,
+                'images': [{'url': url} for url in image_urls]
+            }
+            data.append(hostel_data)
+
+        return JsonResponse({'search_results': data})
+    return HttpResponse(status=400)

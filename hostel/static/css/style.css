@@ -13,6 +13,11 @@ height: 100%;
 align-content: center;
 }
 
+#topbar
+{
+    color: black;
+}
+
 .card{
 height: 320px;
 margin-top: auto;
@@ -22,7 +27,7 @@ background-color: rgba(0,0,0,0.5) !important;
 }
 
 .card-header h3{
-color: white;
+
 text-align: center
 }
 
@@ -68,4 +73,151 @@ margin-left: 4px;
 .fixed-panel {
     min-height: 10;
     max-height: 100;
+}
+
+.hostels-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.hostel-box {
+    display: flex; /* Use flexbox for layout */
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    width: 1500px;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center; /* Center items vertically */
+}
+
+.image-container {
+    margin-right: 10px;
+}
+
+.hostel-image {
+    max-width: 100%;
+    height: 100px;
+    width: 150px;
+}
+
+.hostel-info {
+    display: flex;
+    flex-grow: 1; /* Allow text to take available space */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Add space between h4 and button */
+}
+
+.hostel-info h4 {
+    margin: 0;
+    text-align: center; /* Reset margin to zero */
+}
+
+.view-details-btn {
+    margin-left: 10px; /* Add margin to separate button from text */
+}
+
+ .search-bar-body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 278px;
+        }
+
+        #options-icon {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #0CB2EC;
+            color: #fff;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            
+        }
+
+        #search-input {
+            border: none;
+            padding: 10px;
+         
+            width: 200px;
+        }
+
+        #search-btn {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #0CB2EC;
+            color: #fff;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        #dropdown {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            z-index: 1;
+            top: 61px;
+        }
+
+        .dropdown-option {
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            
+        }
+
+        .dropdown-option:hover {
+            background-color: #f2f2f2;
+        }
+
+/* ... (your existing CSS styles) */
+
+/* Style for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Close button style */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
 }
