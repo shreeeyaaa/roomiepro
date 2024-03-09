@@ -128,6 +128,14 @@ def show_roomies(request):
         "Jhamsikhel",
         "Sinamangal"
     ]
+    # Instantiate the matcher with the path to your text file
+#     matcher = RoommateMatcher("user_data.txt")
+
+# # Find and display the matches
+#     matches = matcher.find_roommates()
+#     for user1, user2 in matches:
+#         print(f"Matched User with preferences {user1.preferences} with User with preferences {user2.preferences}")
+
     return render(request, 'roomies.html', {'people': recommended_people,"locations": locations, temporary_address:"temporary_address"})
     # print (people)
     # for person in people:
@@ -137,23 +145,20 @@ def show_roomies(request):
     # return render(request, 'roomies.html', {'people': recommended_people})
 
 
+from django.shortcuts import render
+
 def show_profiles(request):
     # Assume users_data is a list of dictionaries, each containing data for a user
     people = []
 
     file_path = "user_data.txt"  # Define the file path here
-    
 
     with open(file_path, "r") as file:
         for line in file:
             fields = line.strip().split(', ')
-            # print(fields)
             name = age = name_of_institute = permanent_address = temporary_address = bio = hobbies = location = None
             for field in fields:
-                # split_result = field.split(': ')
-                # print("Field before splitting:", field)
                 split_result = field.split(': ')
-                # print("Split result:", split_result)
                 if len(split_result) == 2:
                     key, value = split_result
                     if key == 'Name':
@@ -171,10 +176,9 @@ def show_profiles(request):
                     elif key == 'bio':
                         bio = value
                     elif key == 'hobbies':
-                    # Extract hobbies as a list
                         hobbies = value.strip('[]').split(', ')
-                    elif key =='Location':
-                        location= value
+                    elif key == 'Location':
+                        location = value
 
             username = name.lower().replace(' ', '_')
             image_path = f"media/user_photos/{username}.jpg"
@@ -190,10 +194,60 @@ def show_profiles(request):
                 'location': location,
                 'image_path': image_path
             })
-    # users_data = [
-    #     {"name": "User 1", "age": 25, "location": "Location 1", "image_path": "/path/to/image1.jpg"},
-    #     {"name": "User 2", "age": 30, "location": "Location 2", "image_path": "/path/to/image2.jpg"},
-    #     # Add more user data as needed
-    # ]
 
-    return render(request, 'users.html', {'users_data': people})
+    # Define the ListNode and DoublyLinkedList classes within the show_profiles function
+    class ListNode:
+        def __init__(self, data):
+            self.data = data
+            self.prev = None
+            self.next = None
+
+    class DoublyLinkedList:
+        def __init__(self):
+            self.head = None
+            self.tail = None
+            self.current = None
+    
+        def insert(self, data):
+            new_node = ListNode(data)
+            if self.head is None:
+                self.head = new_node
+                self.tail = new_node
+                self.current = new_node
+            else:
+                self.tail.next = new_node
+                new_node.prev = self.tail
+                self.tail = new_node
+
+        def move_forward(self):
+            if self.current and self.current.next:
+                self.current = self.current.next
+
+        def move_backward(self):
+            if self.current and self.current.prev:
+                self.current = self.current.prev
+
+        def get_current_data(self):
+            if self.current:
+                return self.current.data
+            else:
+                return None
+
+    # Create a doubly linked list and insert the data
+    dll = DoublyLinkedList()
+    for person in people:
+        dll.insert(person)
+        # print(person)
+        # print(dll)
+
+    # Check if a navigation action is requested
+    if 'forward' in request.GET:
+        dll.move_forward()
+    elif 'backward' in request.GET:
+        dll.move_backward()
+
+    # Get current user's data
+    current_user_data = dll.get_current_data()
+    print(current_user_data)
+
+    return render(request, 'users.html', {'current_user_data': current_user_data})

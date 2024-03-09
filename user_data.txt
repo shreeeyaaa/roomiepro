@@ -1,6 +1,4 @@
-Name: Samikshya Bhusal, Age: 20, Name_of_institute: Pulchowk Campus, permanent_address: Dang, temporary_address: Kathmandu, bio: hi, hobbies: ['dancing'], Latitude: 27.6644, Longitude: 85.3188
-Name: Shreya Shrestha, Age: 19, Name_of_institute: Pulchowk Campus, permanent_address: Chitwan, temporary_address: Kathmandu, bio: hii, hobbies: ['painting'], Latitude: 27.6644, Longitude: 85.3188
-Name: Sadhana Panthi, Age: 20, Name_of_institute: Pulchowk Campus, permanent_address: Kathmandu, temporary_address: Kathmandu, bio: hiii, hobbies: ['hiking'], Latitude: 27.6644, Longitude: 85.3188 
-Name: Oshika Neupane, Age: 20, Name_of_institute: Pulchowk Campus, permanent_address: Pokhara, temporary_address: Lalitpur, bio: HIIII, hobbies: ['dancing'], Latitude: 24.00, Longitude: 45.76 
-Name: Sina Shrestha, Age: 15, Name_of_institute: DAV, permanent_address: Jhapa, temporary_address: Sinamangal, bio: hiiiiiiiiiii, hobbies: ['hiking'], Latitude: 99.76, Longitude: 45.77 
-Name: hira shrestha, Age: 34, Name_of_institute: DAV, permanent_address: Jhapa, temporary_address: Sinamangal, bio: hiiiiiiiiiii, hobbies: ['painting'], Latitude: 99.76, Longitude: 45.77 
+Name: Samikshya Bhusal, Age: 20, Name_of_institute: Pulchowk Campus, permanent_address: Dang, temporary_address: Kathmandu, bio: hi, hobbies: ['dancing', 'painting'], Latitude: 27.6644, Longitude: 85.3188
+Name: Shreya Shrestha, Age: 19, Name_of_institute: Pulchowk Campus, permanent_address: Chitwan, temporary_address: Kathmandu, bio: hii, hobbies: ['painting', 'hiking'], Latitude: 27.6644, Longitude: 85.3188
+Name: Oshika Neupane, Age: 20, Name_of_institute: Pulchowk Campus, permanent_address: Pokhara, temporary_address: Lalitpur, bio: HIIII, hobbies: ['dancing' 'painting'], Latitude: 24.00, Longitude: 45.76 
+Name: Sadhana Panthi, Age: 20, Name_of_institute: Pulchowk Campus, permanent_address: Sinamangal, temporary_address: Sinamangal, bio: Hi I'm Sadhana, hobbies: ['dancing'], Latitude: 99.76, Longitude: 45.77 
