@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profiles</title>
+    <style>
+        /* Add your CSS styling here */
+        .profile-container {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .profile-details {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .show-profile {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% for user in users_data %}
+    <div class="profile-container" id="profile{{ forloop.counter }}">
+        <img src="{{ user.image_path }}" alt="Profile Picture" class="profile-picture">
+        <div class="profile-details">
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <p><strong>Name of institute:</strong> {{ user.name_of_institute }}</p>
+            <p><strong>Temporary Address:</strong> {{ user.temporary_address }}</p>
+            <p><strong>Permanent Address:</strong> {{ user.permanent_address }}</p>
+            <p><strong>Bio:</strong> {{ user.bio }}</p>
+            <p><strong>Hobbies:</strong> {{ user.hobbies }}</p>
+
+
+
+        </div>
+    </div>
+    <p class="show-profile" onclick="showProfile({{ forloop.counter }})">View Profile - {{ user.name }}</p>
+    {% endfor %}
+
+    <script>
+        function showProfile(profileNumber) {
+            var profile = document.getElementById("profile" + profileNumber);
+            var allProfiles = document.querySelectorAll('.profile-container');
+            allProfiles.forEach(function(item) {
+                item.style.display = 'none';
+            });
+            profile.style.display = 'block';
+        }
+    </script>
+    <p>hiiiiii</p>
+</body>
+</html>

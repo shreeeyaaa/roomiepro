@@ -143,56 +143,7 @@
                                                     </label>
                                                 </label>
                                             </div>
-                                             <!-- Gender -->
-                                             Gender:
-                                             {{ student_form.gender }}
-         
                                     
-
-                                            <!-- Password -->
-                                            <div class="control-group">
-                                                <!-- Permanent Address -->
-                                                <label class="control-label" for="{{student_form.address.id_for_label}}"></label>
-                                                <div class="controls">
-                                                    <form>
-                                                        <fieldset>
-                                                          <p>Select your hobbies</p>
-                                                          <div>
-                                                            <input type="checkbox" id="instagram" name="source" value="instagram">
-                                                            <label for="instagram">Singing</label>
-                                                          </div>
-                                                          <div>
-                                                            <input type="checkbox" id="facebook" name="source" value="facebook">
-                                                            <label for="facebook">Dancing</label>
-                                                          </div>
-                                                          <div>
-                                                            <input type="checkbox" id="search-engine" name="source" value="search-engine">
-                                                            <label for="search-engine">Painting</label>
-                                                          </div>
-                                                          <div>
-                                                            <input type="checkbox" id="word-of-mouth" name="source" value="word-of-mouth">
-                                                            <label for="word-of-mouth">Hiking</label>
-                                                          </div>
-                                                          <div>
-                                                            <input type="checkbox" id="press" name="source" value="press">
-                                                            <label for="press">Gaming</label>
-                                                          </div>
-                                                          <div>
-                                                            <input type="checkbox" id="event" name="source" value="event">
-                                                            <label for="event">Cooking</label>
-                                                          </div>
-                                                          <div>
-                                                            <input type="checkbox" id="billboard" name="source" value="billboard">
-                                                            <label for="billboard">Sports</label>
-                                                          </div>
-                
-                                                          </fieldset>
-                                                        </form>
-                                                </div>
-                                            </div>
-                                            
-                                    
-                
                                             <div class="control-group">
                                                     <!-- Name of Institute -->
                                                     <label class="control-label" for="{{student_form.father_name.id_for_label}}"></label>
@@ -255,9 +206,62 @@
                                                     </div>
                                             </div>
                                             <br>
+                                            <div class="control-group">
+                                                <p>Gender:</p> 
+                                             <select name="gender">
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                             </div>
+                                    
+
+                                            <!-- Password -->
+                                            <div class="control-group">
+                                                <!-- Permanent Address -->
+                                                <label class="control-label" for="{{student_form.address.id_for_label}}"></label>
+                                                <div class="controls">
+                                                    <form>
+                                                        <fieldset>
+                                                          <p>Select your hobbies:</p>
+                                                          <div>
+                                                            <input type="checkbox" id="instagram" name="source" value="instagram">
+                                                            <label for="instagram">Singing</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="facebook" name="source" value="facebook">
+                                                            <label for="facebook">Dancing</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="search-engine" name="source" value="search-engine">
+                                                            <label for="search-engine">Painting</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="word-of-mouth" name="source" value="word-of-mouth">
+                                                            <label for="word-of-mouth">Hiking</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="press" name="source" value="press">
+                                                            <label for="press">Gaming</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="event" name="source" value="event">
+                                                            <label for="event">Cooking</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="billboard" name="source" value="billboard">
+                                                            <label for="billboard">Sports</label>
+                                                          </div>
+                
+                                                          </fieldset>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                            
+                                            <br>
                                             <!-- photo -->
                                             <!-- fee receipt -->
-                                            Profile Photo: {{ student_form.fee_receipt }}
+                                            Profile Photo: {{ student_form.profile_picture }}
                                             <br>
                                             <!-- <div class="control-group">
                                               {{ diff_form.as_p }}

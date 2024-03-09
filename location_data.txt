@@ -1,0 +1,5 @@
+Kathmandu,27.7172,85.3240
+Baneshwor,55.67,92.99
+Lalitpur,24.00,45.76
+Jhamsikhel,66.99,88.77
+Sinamangal,99.76,45.77
