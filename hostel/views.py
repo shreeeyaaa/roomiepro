@@ -21,42 +21,17 @@ from .custom_auth import custom_authenticate
 # login page will display error 
 # @login_required
 
-def get_hostel_details(request):
-    hostel_name = request.GET.get('name', None)
-    hostel = Hostel.objects.filter(name=hostel_name).first()
-    image_urls = [image.image.url for image in hostel.images.all()]
-    try:
-        hostel = Hostel.objects.filter(name=hostel_name).first()
-        if hostel:
-            hostel_details = {
-            'name': hostel.name,
-            'location': hostel.address,
-            'contact':hostel.contact,
-            'available_rooms': (hostel.seater2+ hostel.seater3),
-            'seater2': hostel.seater2,
-            'seater3':hostel.seater3,
-            'images':[{'url': url} for url in image_urls]
-
-            # Add other fields as needed
-            }
-        else:
-            hostel_details = {'error': 'Hostel not found'}
-    except Exception as e:
-        hostel_details = {'error': str(e)}
+def index(request):
+    # diff = Diff.objects.get( user = request.user)
+    # return render(request, 'hostel/index.html', {'diff' : diff, })
+    return render(request,'hostel/index.html')
+def roommate(request):
+    return render(request,'roommate/rommate.html')
+def roomie(request):
+    return render(request,'roommate/roomie.html')
 
 
-    return JsonResponse(hostel_details)
-
-
-def sort_by_hostels(request):  
-    context = {'context': sorted_hostels}
-    return render(request, 'hostel/sorted_hostels.html', context)
-
-def sort_by_pricing(request):
     
-    context = {'context': sorted_pricing}
-    return render(request, 'hostel/sorted_hostels.html', context)
-
 
 def indexx(request):
     # diff = Diff.objects.get( user = request.user)
@@ -462,6 +437,7 @@ def show_students(request):
         changer.append([user, i])
     
     return render(request, 'hostel/show_students.html', {'students': changer,})
+
 
 
 @login_required

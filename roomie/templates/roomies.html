@@ -1,89 +1,172 @@
-{% extends 'base.html' %}
 
-{% block title %}Roomies{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html>
 
-{% block content %}
-<style>
-    .people {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: start;
-    }
+<head>
+    <meta charset="utf-8">
+    <title>Roomie</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="">
+    <meta name="author" content="ThemeREX">
 
-    .card {
-        background-color: #f4f4f4;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 200px;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    .card img {
-        max-width: 100%;
-        border-radius: 50%;
-    }
-
-    .card h3 {
-        color: #333;
-        margin-bottom: 10px;
-    }
-
-    .card p {
-        color: #666;
-        margin: 0;
-    }
-
-    .filter-form {
-        margin-bottom: 20px;
-    }
-
-    .filter-form {
-        margin-bottom: 20px;
-        text-align: center; /* Center the form horizontally */
-    }
-
-    .filter-form label {
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .filter-form input {
-        width: 200px; /* Set a specific width for better appearance */
-        padding: 5px;
-        box-sizing: border-box;
-    }
-
-    .filter-form button {
-        padding: 5px 10px;
-    }
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
 
 
-<form method="post" class="filter-form">
-    {% csrf_token %}
-    <label for="location">Filter by Location:</label>
-    <select name="location" id="location">
-        {% for loc in locations %}
-            <option value="{{ loc }}">{{ loc }}</option>
-        {% endfor %}
-    </select>
-    <button type="submit">Filter</button>
-</form>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
 
-<h2>Here are the list of recommended people:</h2>
-<div class="people">
+</head>
+
+<body class="forms-layouts">
+
+    <div id="main">
+        <header class="navbar navbar-fixed-top bg-dark">
+            <!-- navbar for leftside -->
+            <div>
+
+                <ul class="nav navbar-nav navbar-left">
+                    <li class='breadcrumb-icon' style="background-color: rgb(255, 0, 0)">
+                        <a href="/">
+                            <span class="fa fa-home"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-active">
+                        <a href="/index" style="font-size: 20px">Roomie</a>
+                    </li>
+                </ul>
+
+                <!-- navbar for right -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-but">
+                        <a class="btn btn-outline-light" href="/roomie/add_roomie">Update Your Profileee</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown dropdown-fuse">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="hidden-xs">{{ user.first_name }} </span>
+                        </a>
+                        <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
+                            <li class="dropdown-header clearfix">
+                                <a href="/logout/" class="btn btn-primary btn-sm btn-bordered">
+                                    <span class="fa fa-power-off pr5"></span> Logout
+                                </a>
+
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+        </header>
+
+    <!-- <header>
+        <h1>Roomie App</h1>
+    </header>-->
+   
+    <div id="content" class="animated fadeIn">
+
+        <h3 class="text-center mt-10 mb-25 fw-400" style="margin-top: 100px;"> Welcome {{ user.first_name }} </h3>
+        <form method="post" class="filter-form">
+            {% csrf_token %}
+            <label for="location">Filter by Location:</label>
+            <select name="location" id="location">
+                {% for loc in locations %}
+                    <option value="{{ loc }}">{{ loc }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+<div class="row">
     {% for person in people %}
-    <div class="card">
-        <img src="{{ person.image_path }}" alt="{{ person.name }}">
-        <h3>{{ person.name }}</h3>
-        <p>Location: {{ person.location }}</p>
-        {% comment %} <p>Passion: {{person.passion}}</p> {% endcomment %}
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4"> <!-- Adjusted column classes -->
+        <div class="bs-component">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="text-center"> <!-- Center the content -->
+                            <img src="{{ person.image_path }}" alt="{{ person.name }}" class="img-thumbnail"> <!-- Added 'img-thumbnail' class -->
+                        </div>
+                        <h3 class="text-center">{{ person.name }}</h3> <!-- Center the name -->
+                        <p class="text-center">Location: {{ person.temporary_address }}</p> <!-- Center the location -->
+                        <!-- <p class="text-center">Passion: {{ person.passion }}</p> -->
+                        <div class="text-center"> <!-- Center the button -->
+                            <a href="/roomie/show_profiles" class="btn btn-default btn-lg mb-3">View</a> <!-- Adjusted margin -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     {% endfor %}
 </div>
-{% endblock %}
+
+    <!-- </div>
+    <style>
+        .people {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: start;
+        }
+    
+        .card {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    
+        .card img {
+            max-width: 100%;
+            border-radius: 50%;
+        }
+    
+        .card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+    
+        .card p {
+            color: #666;
+            margin: 0;
+        }
+    </style>
+    
+    <h2>Here are the list of recommended people:</h2>
+    
+    <div class="people">
+        {% for person in people %}
+        <div class="card">
+            <img src="{{ person.image_path }}" alt="{{ person.name }}">
+            <h3>{{ person.name }}</h3>
+            <p>Location: {{ person.location }}</p>
+            {% comment %} <p>Passion: {{person.passion}}</p> {% endcomment %}
+        </div>
+        {% endfor %}
+    </div>
+    <h2>Here are the list of recommended people based on same initials:</h2> -->
+    
+    <!-- <div class="people">
+        {% for person in names %}
+        <div class="card">
+            <img src="{{ person.image_path }}" alt="{{ person.name }}">
+            <h3>{{ person.name }}</h3>
+            <p>Location: {{ person.location }}</p>
+            {% comment %} <p>Passion: {{person.passion}}</p> {% endcomment %}
+        </div>
+        {% endfor %}
+    </div> -->
+    
+</body>
+</html>

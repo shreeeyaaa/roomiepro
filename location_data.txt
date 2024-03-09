@@ -1,5 +1,6 @@
+
 Kathmandu,27.7172,85.3240
-Baneshwor,27.6892,85.3300
-Lalitpur,27.6644,85.3188
-Jhamsikhel,27.6844,85.3128
-Sinamangal,27.7007,85.3476
+Baneshwor,55.67,92.99
+Lalitpur,24.00,45.76
+Jhamsikhel,66.99,88.77
+Sinamangal,99.76,45.77

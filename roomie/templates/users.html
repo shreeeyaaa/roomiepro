@@ -1,0 +1,633 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profiles</title>
+    <style>
+        /* Add your CSS styling here */
+        .profile-container {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .profile-details {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .show-profile {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% for user in users_data %}
+    <div class="profile-container" id="profile{{ forloop.counter }}">
+        <img src="{{ user.image_path }}" alt="Profile Picture" class="profile-picture">
+        <div class="profile-details">
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <p><strong>Name of institute:</strong> {{ user.name_of_institute }}</p>
+            <p><strong>Temporary Address:</strong> {{ user.temporary_address }}</p>
+            <p><strong>Permanent Address:</strong> {{ user.permanent_address }}</p>
+            <p><strong>Bio:</strong> {{ user.bio }}</p>
+            <p><strong>Hobbies:</strong> {{ user.hobbies }}</p>
+
+
+
+        </div>
+    </div>
+    <p class="show-profile" onclick="showProfile({{ forloop.counter }})">View Profile - {{ user.name }}</p>
+    {% endfor %}
+
+    <script>
+        function showProfile(profileNumber) {
+            var profile = document.getElementById("profile" + profileNumber);
+            var allProfiles = document.querySelectorAll('.profile-container');
+            allProfiles.forEach(function(item) {
+                item.style.display = 'none';
+            });
+            profile.style.display = 'block';
+        }
+    </script>
+    <p>hiiiiii</p>
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profiles</title>
+    <style>
+        /* Add your CSS styling here */
+        .profile-container {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .profile-details {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .show-profile {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="searchName">Enter Name:</label>
+        <input type="text" id="searchName" name="searchName">
+        <button onclick="searchProfile()">Search</button>
+    </div>
+
+    {% for user in users_data %}
+    <div class="profile-container" id="profile{{ forloop.counter }}">
+        <img src="{{ user.image_path }}" alt="Profile Picture" class="profile-picture">
+        <div class="profile-details">
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <p><strong>Name of institute:</strong> {{ user.name_of_institute }}</p>
+            <p><strong>Temporary Address:</strong> {{ user.temporary_address }}</p>
+            <p><strong>Permanent Address:</strong> {{ user.permanent_address }}</p>
+            <p><strong>Bio:</strong> {{ user.bio }}</p>
+            <p><strong>Hobbies:</strong> {{ user.hobbies }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+   
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profiles</title>
+    <style>
+        /* Add your CSS styling here */
+        .profile-container {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .profile-details {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .show-profile {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-navigation">
+        <button onclick="moveBackward()">Previous</button>
+        <button onclick="moveForward()">Next</button>
+    </div>
+    {% for user in current_user_data %} -->
+    <!-- <div class="profile-container" id="profile{{ forloop.counter }}">
+        <img src="{{ user.image_path }}" alt="Profile Picture" class="profile-picture">
+        <div class="profile-details">
+            <p><strong>Name:</strong> {{ current_user_data.name }}</p>
+            <p><strong>Age:</strong> {{ current_user_data.age }}</p>
+            <p><strong>Name of institute:</strong> {{ current_user_data.name_of_institute }}</p>
+            <p><strong>Temporary Address:</strong> {{ current_user_data.temporary_address }}</p>
+            <p><strong>Permanent Address:</strong> {{ current_user_data.permanent_address }}</p>
+            <p><strong>Bio:</strong> {{ current_user_data.bio }}</p>
+            <p><strong>Hobbies:</strong> {{ current_user_data.hobbies }}</p>
+
+
+
+        </div>
+    </div>
+    <p class="show-profile" onclick="showProfile({{ forloop.counter }})">View Profile - {{ user.name }}</p>
+    {% endfor %} -->
+
+    <!-- <script>
+        function showProfile(profileNumber) {
+            var profile = document.getElementById("profile" + profileNumber);
+            var allProfiles = document.querySelectorAll('.profile-container');
+            allProfiles.forEach(function(item) {
+                item.style.display = 'none';
+            });
+            profile.style.display = 'block';
+        }
+    </script>
+    <p>hiiiiii</p>
+ class="profile-container" id="profile">
+        <div class="profile-details">
+            <p><strong>Name:</strong> <span id="name"></span></p>
+            <p><strong>Age:</strong> <span id="age"></span></p>
+        </div>
+    </div> -->
+
+    
+<!-- </body>
+</html>
+</html> --> 
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profiles</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .profile {
+            flex: 0 1 60%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .profile img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .navigation {
+            flex: 0 1 30%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navigation button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navigation button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <div class="container">
+        <div class="profile">
+            <img src="{{ current_user_data.image_path }}" alt="{{ current_user_data.name }}">
+            <h2>{{ current_user_data.name }}</h2> -->
+            
+                <!-- <p><strong>Name:</strong> {{ user.name }}</p> -->
+                <!-- <p><strong>Age:</strong> {{ current_user_data.age }}</p>
+                <p><strong>Name of institute:</strong> {{ current_user_data.name_of_institute }}</p>
+                <p><strong>Temporary Address:</strong> {{ current_user_data.temporary_address }}</p>
+                <p><strong>Permanent Address:</strong> {{ current_user_data.permanent_address }}</p>
+                <p><strong>Bio:</strong> {{ current_user_data.bio }}</p> -->
+                <!-- <p><strong>Hobbies:</strong> {{ user.hobbies }}</p> -->
+    
+    
+    
+            
+            <!-- <ul>
+                <li><strong>Hobbies:</strong></li>
+                {% for hobby in current_user_data.hobbies %}
+                <li>{{ hobby }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="navigation">
+            <form action="{% url 'show_profiles' %}" method="get">
+                <button type="submit" name="backward">Previous</button>
+                <button type="submit" name="forward">Next</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+ -->
+ <!-- <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>User Profiles</title>
+     <style>
+         body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  max-width: 1000px; /* Limit container width for responsiveness */
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+  flex: 0 1 60%;
+  padding: 20px;
+}
+
+.profile img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.profile h2 {
+  color: #d9534f; /* Slightly red color */
+  margin-bottom: 10px;
+}
+
+.profile p {
+  margin-bottom: 5px;
+  line-height: 1.5; /* Improve readability with line spacing */
+}
+
+.info {
+  margin-bottom: 15px;
+}
+
+.profile .info p strong {
+  font-weight: bold; /* Emphasize info labels */
+}
+
+.hobbies {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.navigation {
+  flex: 0 1 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #d9534f; /* Slightly red color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.navigation button:hover {
+  background-color: #c9302c; /* Darker red on hover */
+}
+     </style>
+ </head>
+ <body>
+ 
+ <div class="container">
+     <div class="profile">
+         <img src="{{ current_user_data.image_path }}" alt="{{ current_user_data.name }}">
+         <h2>{{ current_user_data.name }}</h2>
+         <p><strong>Age:</strong> {{ current_user_data.age }}</p>
+         <p><strong>Name of institute:</strong> {{ current_user_data.name_of_institute }}</p>
+         <p><strong>Temporary Address:</strong> {{ current_user_data.temporary_address }}</p>
+         <p><strong>Permanent Address:</strong> {{ current_user_data.permanent_address }}</p>
+         <p><strong>Bio:</strong> {{ current_user_data.bio }}</p>
+         
+         <ul>
+             <li><strong>Hobbies:</strong></li>
+             {% for hobby in current_user_data.hobbies %}
+                 <li>{{ hobby }}</li>
+             {% endfor %}
+         </ul>
+     </div>
+     <div class="navigation">
+         <form action="{% url 'show_profiles' %}" method="get">
+             <button type="submit" name="backward">Previous</button>
+             <button type="submit" name="forward">Next</button>
+         </form>
+     </div>
+ </div>
+ 
+ </body>
+ </html>
+  -->
+  <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profiles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .navigation button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navigation button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <img src="{{ current_user_data.image_path }}" alt="{{ current_user_data.name }}">
+            <h2>{{ current_user_data.name }}</h2>
+            <p>Age: {{ current_user_data.age }}</p>
+            <p>Location: {{ current_user_data.location }}</p>
+            <p>Bio: {{ current_user_data.bio }}</p>
+            <ul>
+                <li><strong>Hobbies:</strong></li>
+                {% for hobby in current_user_data.hobbies %}
+                <li>{{ hobby }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="navigation">
+            <form action="{% url 'show_profiles' %}" method="get">
+                <button type="submit" name="backward">Previous</button>
+                <button type="submit" name="forward">Next</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profiles</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  max-width: 1000px; /* Limit container width for responsiveness */
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+  flex: 0 0 200px; /* Fix image width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.details {
+  flex: 1; /* Flexible width for details */
+  padding: 20px;
+}
+
+.details h2 {
+  color: #d9534f; /* Slightly red color */
+  margin-bottom: 10px;
+}
+
+.details p {
+  margin-bottom: 5px;
+  line-height: 1.5; /* Improve readability with line spacing */
+}
+
+.info {
+  margin-bottom: 15px;
+}
+
+.details .info strong {
+  font-weight: bold; /* Emphasize info labels */
+}
+
+.hobbies {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  margin-top: 20px;
+}
+
+.navigation button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #d9534f; /* Slightly red color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+  margin: 0 10px; /* Add spacing between buttons */
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="profile">
+      <img src="{{ current_user_data.image_path }}" alt="{{ current_user_data.name }}">
+    </div>
+    <div class="details">
+      <h2>{{ current_user_data.name }}</h2>
+      <div class="info">
+        <p><strong>Age:</strong> {{ current_user_data.age }}</p>
+        <p><strong>Institute:</strong> {{ current_user_data.name_of_institute }}</p>
+        <p><strong>Temporary Address:</strong> {{ current_user_data.temporary_address }}</p>
+        <p><strong>Permanent Address:</strong> {{ current_user_data.permanent_address }}</p>
+        <p><strong>Bio:</strong> {{ current_user_data.bio }}</p>
+      </div>
+      <ul class="hobbies">
+        <li><strong>Hobbies:</strong></li>
+        {% for hobby in current_user_data.hobbies %}
+          <li>{{ hobby }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <form action="{% url 'show_profiles' %}" method="get">
+      <button type="submit" name="backward">Previous</button>
+      <button type="submit" name="forward">Next</button>
+    </form>
+  </div>
+
+</body>
+</html>

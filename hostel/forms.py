@@ -52,26 +52,27 @@ class DiffForm(forms.ModelForm):
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ('gender', 'father_name', 'date_of_birth', 'fee_receipt',
-                  'address', 'city', 'state', 'pincode')
-# , 'join_year'
-    # def clean_join_year(self):
-    #     join_year = self.cleaned_data.get('join_year')
-    #     if not (join_year > 2013 and join_year <= datetime.now().year):
-    #         raise forms.ValidationError('Please enter valid Join year')
-    #     return join_year
+        fields = ('name', 'age', 'hobbies', 'name_of_institute',
+                  'permanent_address', 'temporary_address', 'bio', 'profile_picture')
 
-    def clean_pincode(self):
-        pincode = self.cleaned_data.get('pincode')
-        if not len(str(pincode)) == 6:
-            raise forms.ValidationError('Please enter valid Pincode')
-        return pincode
+    def clean_age(self):
+        age = self.cleaned_data.get('age')
+        if not (age > 15 and age <= 70):
+            raise forms.ValidationError('Please enter valid age')
+        return age
 
-    def clean_father_name(self):
-        father_name = self.cleaned_data.get('father_name')
-        if not re.match(r'[A-Za-z]{3,}', father_name):
+    # def clean_pincode(self):
+    #     pincode = self.cleaned_data.get('pincode')
+    #     if not len(str(pincode)) == 6:
+    #         raise forms.ValidationError('Please enter valid Pincode')
+    #     return pincode
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if not re.match(r'[A-Za-z]{3,}', name):
             raise forms.ValidationError('Name is not valid!')
-        return father_name
+        return name
+
 
 
 class RoomForm(forms.ModelForm):

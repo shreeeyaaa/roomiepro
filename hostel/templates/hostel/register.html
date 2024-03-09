@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Hostel Management - Registration</title>
+    <title>Roomie-Profile</title>
     <meta name="keywords" content=""/>
     <meta name="description" content="">
     <meta name="author" content="ThemeREX">
@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="breadcrumb-active">
-                <a href="/" style="font-size: 20px">Hostel Management</a>
+                <a href="/" style="font-size: 20px">Roomie</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-expand-lg navbar-right">
@@ -53,7 +53,7 @@
                     <li class="breadcrumb-link">
                         <a href="/">Home</a>
                     </li>
-                    <li class="breadcrumb-current-item">/ Registration</li>
+                    <li class="breadcrumb-current-item">/ User Profile</li>
                 </ol>
             </div>
             
@@ -67,8 +67,8 @@
                         <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <span class="panel-title">Registration Form</span>
-                                    <span></br></br>Note: You can register a perticular student by entering his/her valid details.</span>
+                                    <span class="panel-title">User Profile</span>
+                                    <span></br></br>Please enter valid details.</span>
                                 </div>
 
                                  <!-- Form  -->
@@ -103,7 +103,7 @@
                                         {% endif %}
                                         <div class="panel-body pn">
                                                 <!-- Username -->
-                                            <div class="section">
+                                            <!-- <div class="section">
                                                 <label class="field prepend-icon"  for="{{ user_form.username.id_for_label }}">
                                                     <input type="text" maxlength="100" id="{{ user_form.username.id_for_label }}" name="{{ user_form.username.html_name }}" name="username" placeholder="Username" class="gui-input" required>
                                                     
@@ -111,12 +111,12 @@
                                                         <i class="fa fa-edit"></i>
                                                     </label>
                                                 </label>
-                                            </div>
+                                            </div> -->
                                         
-                                            <!-- First Name -->
+                                            <!-- Name -->
                                             <div class="section">
                                                 <label class="field prepend-icon"  for="{{ user_form.first_name.id_for_label }}">
-                                                    <input type="text" maxlength="100" id="{{ user_form.first_name.id_for_label }}" name="{{ user_form.first_name.html_name }}" name="firstname" placeholder="First Name" class="gui-input" required>
+                                                    <input type="text" maxlength="100" id="{{ user_form.first_name.id_for_label }}" name="{{ user_form.first_name.html_name }}" name="name" placeholder="Name" class="gui-input" required>
                                                     <label for="{{ user_form.first_name.id_for_label }}" class="field-icon">
                                                             <i class="fa fa-user"></i>
                                                     </label>
@@ -124,109 +124,154 @@
                                             </div>
 
                                             <!-- Last Name -->
-                                            <div class="section">
+                                            <!-- <div class="section">
                                                 <label class="field prepend-icon"  for="{{ user_form.last_name.id_for_label }}">
                                                     <input type="text" maxlength="100" id="{{ user_form.last_name.id_for_label }}" name="{{ user_form.last_name.html_name }}" name="lastname" placeholder="Last Name" class="gui-input" required>
                                                     <label for="{{ user_form.last_name.id_for_label }}" class="field-icon">
                                                         <i class="fa fa-user"></i>
                                                     </label>
                                                 </label>
-                                            </div>
+                                            </div> -->
 
-                                            <!-- Email Address -->
-                                            <div class="section">
+                                            <!-- Age -->  
+
+                                            <div class="section"> 
                                                 <label class="field prepend-icon"  for="{{ user_form.email.id_for_label }}">
-                                                    <input type="email" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.html_name }}" name="email" placeholder="Email" class="gui-input" required>
+                                                    <input type="number" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.html_name }}" name="age" placeholder="Age" class="gui-input" required>
                                                     <label for="{{ user_form.email.id_for_label }}" class="field-icon">
                                                         <i class="fa fa-envelope"></i>
                                                     </label>
                                                 </label>
                                             </div>
-                                            <!-- Password -->
-                                            <div class="section">
-                                                <label class="field prepend-icon"  for="{{ user_form.password.id_for_label }}">
-                                                    <input type="password" id="{{ user_form.password.id_for_label }}" name="{{ user_form.password.html_name }}" name="password" placeholder="Password" class="gui-input" required>
-                                                    <label for="{{ user_form.password.id_for_label }}" class="field-icon">
-                                                        <i class="fa fa-lock"></i>
-                                                    </label>
-                                                </label>
-                                                <p class="help-block">Your password must contain at least 8 characters.</p>
-                                            </div>
-                                            <!-- Gender -->
-                                            Gender:
-                                                    {{ student_form.gender }}
-                
+                                    
                                             <div class="control-group">
-                                                    <!-- Father Name -->
+                                                    <!-- Name of Institute -->
                                                     <label class="control-label" for="{{student_form.father_name.id_for_label}}"></label>
                                                     <div class="controls">
-                                                    <input type="text" maxlength="100" id="{{student_form.father_name.id_for_label}}" name="father_name" placeholder="Father Name" class="gui-input" required>
+                                                    <input type="text" maxlength="100" id="{{student_form.father_name.id_for_label}}" name="father_name" placeholder="Name of Institute" class="gui-input" required>
                                                     
                                                     </div>
                                             </div>
                 
-                                            <div class="control-group">
+                                            <!-- <div class="control-group"> -->
+                                                <!-- age -->
                                                     <!-- Date of Birth -->
-                                                    <label class="control-label" for="{{student_form.date_of_birth.id_for_label}}"></label>
+                                                    <!-- <label class="control-label" for="{{student_form.date_of_birth.id_for_label}}"></label>
                                                     <div class="controls">
-                                                    <input type="date" id="{{student_form.date_of_birth.id_for_label}}" name="date_of_birth" placeholder="" class="gui-input" required>
-                                                    </div>
-                                            </div> 
+                                                    <input type="number" id="{{student_form.date_of_birth.id_for_label}}" name="date_of_birth" placeholder="" class="gui-input" required>
+                                                    </div> -->
+                                            <!-- </div>  -->
                                             <div class="control-group">
-                                                    <!-- Address -->
+                                                    <!-- Permanent Address -->
                                                     <label class="control-label" for="{{student_form.address.id_for_label}}"></label>
                                                     <div class="controls">
-                                                    <input type="text" maxlength="100" id="{{student_form.address.id_for_label}}" name="address" placeholder="Address(House No, Building, Street)" class="gui-input" required>
+                                                    <input type="text" maxlength="100" id="{{student_form.address.id_for_label}}" name="address" placeholder="Permanent Adress" class="gui-input" required>
                                                     
                                                     </div>
                                             </div>
                                             <div class="control-group">
+                                                <!-- temp address -->
                                                 <!-- city -->
                                                 <label class="control-label" for="{{student_form.city.id_for_label}}"></label>
                                                 <div class="controls">
-                                                <input type="text" maxlength="100" id="{{student_form.city.id_for_label}}" name="city" placeholder="City" class="gui-input" required>
+                                                <input type="text" maxlength="100" id="{{student_form.city.id_for_label}}" name="tempaddress" placeholder="Temporary Address" class="gui-input" required>
                                                 
                                                 </div>
                                             </div>
-                                            <div class="control-group">
+                                            <!-- <div class="control-group"> -->
                                                 <!-- State -->
-                                                <label class="control-label" for="{{student_form.state.id_for_label}}"></label>
+                                                <!-- <label class="control-label" for="{{student_form.state.id_for_label}}"></label>
                                                 <div class="controls">
                                                 <input type="text" maxlength="100" id="{{student_form.state.id_for_label}}" name="state" placeholder="State" class="gui-input" required>
                                                 
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             
-                                            <div class="control-group">
+                                            <!-- <div class="control-group"> -->
                                                 <!-- Pincode -->
-                                                <label class="control-label" for="{{student_form.pincode.id_for_label}}"></label>
+                                                <!-- <label class="control-label" for="{{student_form.pincode.id_for_label}}"></label>
                                                 <div class="controls">
                                                 <input type="number" size="6" id="{{student_form.pincode.id_for_label}}" name="pincode" placeholder="Pincode" class="gui-input" required>
                                                 
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="control-group">
+                                                <!-- bio -->
                                                     <!-- Batch -->
                                                     <label class="control-label" for="{{student_form.join_year.id_for_label}}"></label>
                                                     <div class="controls">
-                                                    <input type="number" id="{{student_form.join_year.id_for_label}}" name="join_year" placeholder="Batch" class="gui-input" required>
+                                                    <input type="text" id="{{student_form.join_year.id_for_label}}" name="bio" placeholder="Bio" class="gui-input" required>
                                                     
                                                     </div>
                                             </div>
                                             <br>
-                                            <!-- fee receipt -->
-                                            Fee Receipt: {{ student_form.fee_receipt }}
-                                            <br>
                                             <div class="control-group">
+                                                <p>Gender:</p> 
+                                             <select name="gender">
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                             </div>
+                                    
+
+                                            <!-- Password -->
+                                            <div class="control-group">
+                                                <!-- Permanent Address -->
+                                                <label class="control-label" for="{{student_form.address.id_for_label}}"></label>
+                                                <div class="controls">
+                                                    <form>
+                                                        <fieldset>
+                                                          <p>Select your hobbies:</p>
+                                                          <div>
+                                                            <input type="checkbox" id="instagram" name="source" value="instagram">
+                                                            <label for="instagram">Singing</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="facebook" name="source" value="facebook">
+                                                            <label for="facebook">Dancing</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="search-engine" name="source" value="search-engine">
+                                                            <label for="search-engine">Painting</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="word-of-mouth" name="source" value="word-of-mouth">
+                                                            <label for="word-of-mouth">Hiking</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="press" name="source" value="press">
+                                                            <label for="press">Gaming</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="event" name="source" value="event">
+                                                            <label for="event">Cooking</label>
+                                                          </div>
+                                                          <div>
+                                                            <input type="checkbox" id="billboard" name="source" value="billboard">
+                                                            <label for="billboard">Sports</label>
+                                                          </div>
+                
+                                                          </fieldset>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                            
+                                            <br>
+                                            <!-- photo -->
+                                            <!-- fee receipt -->
+                                            Profile Photo: {{ student_form.profile_picture }}
+                                            <br>
+                                            <!-- <div class="control-group">
                                               {{ diff_form.as_p }}
-                                            </div>   
+                                            </div>    -->
                                         </div>
                        
                                         <div class="control-group text-center" >
                                             <!-- Button -->
                                             <div class="controls">
-                                            <button class="btn btn-primary">Register</button>
+                                            <button class="btn btn-primary">Create</button>
              
                                             </div>
                                         </div>
