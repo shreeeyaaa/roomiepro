@@ -10,7 +10,7 @@ Roomie is a web application designed to help hostel residents find compatible ro
 - **Roommate Matching:** The application matches users based on their preferences, interests, and location.
 - **Profile Management:** Users can update their profiles, including their preferences for roommates.
 - **Roommate Search:** Users can search for potential roommates based on various criteria.
-- - **Hostel Search:** The application helps in searching hostels based on their preferences, interests, and location.
+- **Hostel Search:** The application helps in searching hostels based on their preferences, interests, and location.
 
 ## Technologies Used:
 - **Django:** The backend of the application is built using the Django web framework.
