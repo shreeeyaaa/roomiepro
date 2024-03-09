@@ -1,55 +1,43 @@
 
-# Online-Hostel-Allotment :hotel:
-Hostel Management System made for our IIITV hostel. Specific to requirements.
-A desktop application aimed to manage hostel. The application was made using Bootstrap, Django and sqllite for Database.
+# Roomie
 
-## Objective:
-Hostel Management System is an web application which aims at the computerization of hostel management letting the complete process of allotment and its management be dependent on computer. As the working of any hostel is almost same, I’ve chosen our own “Indian Institute of Infomation Technolgy, Vadodara Hostel” to present the software and its design. Without computers, everything goes on registers causing a lot of paper work with very less efficiency, which is where this software can dramatically improve the overall management. My purpose in developing this application was to provide a very simple interface to the requirement that will be easy to navigate and operate, proper record keeping and reporting, and an application that can be implemented on desktop or client/server architecture i.e. providing with the following features:
-Highly user-friendly Cross-platform Easy-to-use Tested system to track unnoticed error.
+## Overview:
+Roomie is a web application designed to help hostel residents find compatible roommates based on their preferences and interests. The application aims to simplify the roommate search process and enhance the overall hostel living experience.
 
-## Hostel Accountant
-This user account is meant for the head clerk who maintains the complete database of students, maintains the room allotments.
-The privileges allowed to the head clerk/hostel accountant are:
-1. Allot a new room
-2. Empty an allotted room
-3. Swap rooms between students
-4. Shift student to empty room
-5. View or Update Details of student
-7. Search through complete database
+## Features:
+- **User Registration:** Users can create accounts and provide details about themselves.
+- **Roommate Matching:** The application matches users based on their preferences, interests, and location.
+- **Profile Management:** Users can update their profiles, including their preferences for roommates.
+- **Roommate Search:** Users can search for potential roommates based on various criteria.
+- - **Hostel Search:** The application helps in searching hostels based on their preferences, interests, and location.
 
-## Clone project
- first fork the repository     
-$ git clone https://github.com/singhshubham98/Online-Hostel-Allotment.git
+## Technologies Used:
+- **Django:** The backend of the application is built using the Django web framework.
+- **HTML/CSS:** Frontend development is done using standard web technologies.
+- **SQLite:** The default database engine used by Django for data storage.
 
-## Install requirements
-$ cd Online-Hostel-Allotment          
-$ sudo -H pip install -r requirements.txt
 
-## Migrate Database
-$ python manage.py makemigrations   
-$ python manage.py migrate
+## Setup and Installation:
+1. Clone the repository to your local machine.
+2. Install Python and Django if not already installed.
+3. Install required dependencies using `pip install -r requirements.txt`.
+4. Run database migrations using `python manage.py migrate`.
+5. Start the development server with `python manage.py runserver`.
 
-## Create Super User
-$ python manage.py createsuperuser
+## Usage:
+1. Access the application through the provided URL.
+2. Sign up for an account or log in if you already have one.
+3. Update your profile with details about yourself and your roommate preferences.
+4. Use the roommate search feature to find compatible roommates based on your preferences.
+5. Communicate with potential roommates using the messaging system.
+6. Finalize your roommate selection and enjoy your hostel life!
 
-## Run CLI
-$ python manage.py runserver
+## Contributors:
+- Oshika Neupane
+- Sadhana Panthi
+- Samikshya Bhusal
+- Shreya Shrestha
 
-## Username and Password
-  Username - admin.   
-  Password - admin123
-  
-## Issues
-<p align="center">
-<a href="https://github.com/singhshubham98/Online-Hostel-Allotment/issues">
-    <img src="https://img.shields.io/github/issues/singhshubham98/Online-Hostel-Allotment.svg?style=for-the-badge" align="center">
-</a>
-</p>
 
-## License
-This project is licensed under the MIT license. See LICENSE file for more details.
-<p align="center">
- <a href="/LICENSE">
-    <img src="https://img.shields.io/github/license/singhshubham98/Online-Hostel-Allotment.svg?style=for-the-badge" align="center">
-</a>
-</p>
+
+

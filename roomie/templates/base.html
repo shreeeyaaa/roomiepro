@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Roomie App{% endblock %}</title>
+</head>
+<body style="padding: 2rem;">
+    <header>
+        <h1>Roomie App</h1>
+    </header>
+    <nav style="display: flex; justify-content: space-around; background-color: #3498db; padding: 10px;">
+
+        <a href="/roomie/add_roomie" style="text-decoration: none; color: #ecf0f1; transition: color 0.3s;">Add roomie</a>
+
+        <a href="/roomie/show_roomies" style="text-decoration: none; color: #ecf0f1; transition: color 0.3s;">Find roomie</a>
+
+        <a href="/" style="text-decoration: none; color: #ecf0f1; transition: color 0.3s;">Back to hostels</a>
+
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        {% comment %} <p>Footer content goes here.</p> {% endcomment %}
+    </footer>
+</body>
+</html>

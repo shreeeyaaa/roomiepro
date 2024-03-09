@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Roomies{% endblock %}
+
+{% block content %}
+<style>
+    .people {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: start;
+    }
+
+    .card {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 200px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .card img {
+        max-width: 100%;
+        border-radius: 50%;
+    }
+
+    .card h3 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        color: #666;
+        margin: 0;
+    }
+
+    .filter-form {
+        margin-bottom: 20px;
+    }
+
+    .filter-form {
+        margin-bottom: 20px;
+        text-align: center; /* Center the form horizontally */
+    }
+
+    .filter-form label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .filter-form input {
+        width: 200px; /* Set a specific width for better appearance */
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .filter-form button {
+        padding: 5px 10px;
+    }
+</style>
+
+
+<form method="post" class="filter-form">
+    {% csrf_token %}
+    <label for="location">Filter by Location:</label>
+    <select name="location" id="location">
+        {% for loc in locations %}
+            <option value="{{ loc }}">{{ loc }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<h2>Here are the list of recommended people:</h2>
+<div class="people">
+    {% for person in people %}
+    <div class="card">
+        <img src="{{ person.image_path }}" alt="{{ person.name }}">
+        <h3>{{ person.name }}</h3>
+        <p>Location: {{ person.location }}</p>
+        {% comment %} <p>Passion: {{person.passion}}</p> {% endcomment %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
